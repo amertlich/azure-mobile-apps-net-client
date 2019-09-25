@@ -18,13 +18,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <ProjectReference Include="..\E2ETestFramework\E2ETestFramework.csproj" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)' != 'SdkRel' ">
-    <ProjectReference Include="..\..\src\Microsoft.Azure.Mobile.Client\Microsoft.Azure.Mobile.Client.csproj" />
-    <ProjectReference Include="..\..\src\Microsoft.Azure.Mobile.Client.SQLiteStore\Microsoft.Azure.Mobile.Client.SQLiteStore.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)' == 'SdkRel' ">
-    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.0.0-alpha-001" />
-    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.0-alpha-001" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System.Net.Http" />

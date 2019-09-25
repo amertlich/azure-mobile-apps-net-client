@@ -166,12 +166,9 @@
     </ProjectReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="5.2.6" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)' == 'SdkRel' ">
-    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.0.0-alpha-001" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)' != 'SdkRel'">
-    <ProjectReference Include="..\..\src\Microsoft.Azure.Mobile.Client\Microsoft.Azure.Mobile.Client.csproj" Name="Microsoft.Azure.Mobile.Client" />
-    <ProjectReference Include="..\..\src\Microsoft.Azure.Mobile.Client.SQLiteStore\Microsoft.Azure.Mobile.Client.SQLiteStore.csproj" Name="Microsoft.Azure.Mobile.Client.SQLiteStore" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client.SQLiteStore" Version="4.1.1" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
