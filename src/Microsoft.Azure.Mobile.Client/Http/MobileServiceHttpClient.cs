@@ -10,7 +10,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -617,19 +616,13 @@ namespace Microsoft.WindowsAzure.MobileServices
             // If there was supposed to be response content and there was not, throw
             if (ensureResponseContent)
             {
-                long? contentLength = null;
                 if (response.Content != null)
                 {
-                    IEnumerable<string> contentLengthHeader;
-                    if (response.Content.Headers.TryGetValues("Content-Length", out contentLengthHeader))
+                    long? contentLength = response.Content.Headers.ContentLength;
+                    if (contentLength == null || contentLength <= 0)
                     {
-                        contentLength = Convert.ToInt64(contentLengthHeader.FirstOrDefault() ?? "0");
+                        throw new MobileServiceInvalidOperationException("The server did not provide a response with the expected content.", request, response);
                     }
-                }
-
-                if (contentLength == null || contentLength <= 0)
-                {
-                    throw new MobileServiceInvalidOperationException("The server did not provide a response with the expected content.", request, response);
                 }
             }
 
