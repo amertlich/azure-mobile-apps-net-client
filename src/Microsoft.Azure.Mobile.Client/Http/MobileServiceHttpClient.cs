@@ -624,8 +624,8 @@ namespace Microsoft.WindowsAzure.MobileServices
                     {
                         contentLength = Convert.ToInt64(contentLengthHeader.FirstOrDefault() ?? "0");
                     }
-                    contentLength = response.Content.Headers.ContentLength;
-                    if (contentLength == null || contentLength <= 0)
+                    bool contentLengthHeaderIsGreaterThanZero = response.Content.Headers.ContentLength.HasValue && response.Content.Headers.ContentLength.Value > 0;
+                    if (contentLength <= 0 && !contentLengthHeaderIsGreaterThanZero)
                     {
                         throw new MobileServiceInvalidOperationException("The server did not provide a response with the expected content.", request, response);
                     }
